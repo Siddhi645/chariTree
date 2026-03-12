@@ -1,0 +1,172 @@
+[
+  {
+    "name": "Helping Hands",
+    "category": "Child Welfare",
+    "location": "Pune",
+    "wishlist": [
+      {
+        "item": "Books",
+        "quantity": 20
+      },
+      {
+        "item": "Stationery",
+        "quantity": 30
+      }
+    ],
+    "email": "helpinghands@gmail.com",
+    "password": "HelpingHands123"
+  },
+  {
+    "name": "Care for Animals",
+    "category": "Animal Welfare",
+    "location": "Mumbai",
+    "wishlist": [
+      {
+        "item": "Dog Food",
+        "quantity": 50
+      },
+      {
+        "item": "Cat Food",
+        "quantity": 30
+      }
+    ],
+    "email": "careforanimals@gmail.com",
+    "password": "CareforAnimals123"
+  },
+  {
+    "name": "Senior Support",
+    "category": "Elderly Care",
+    "location": "Delhi",
+    "wishlist": [
+      {
+        "item": "Medicines",
+        "quantity": 100
+      },
+      {
+        "item": "Blankets",
+        "quantity": 50
+      }
+    ],
+    "email": "seniorsupport@gmail.com",
+    "password": "SeniorSupport123"
+  },
+  {
+    "name": "Bright Futures",
+    "category": "Education",
+    "location": "Chennai",
+    "wishlist": [
+      {
+        "item": "Notebooks",
+        "quantity": 100
+      },
+      {
+        "item": "Laptops",
+        "quantity": 10
+      }
+    ],
+    "email": "brightfutures@gmail.com",
+    "password": "BrightFutures123"
+  },
+  {
+    "name": "Health First",
+    "category": "Healthcare",
+    "location": "Bangalore",
+    "wishlist": [
+      {
+        "item": "Masks",
+        "quantity": 500
+      },
+      {
+        "item": "Sanitizers",
+        "quantity": 200
+      }
+    ],
+    "email": "healthfirst@gmail.com",
+    "password": "HealthFirst123"
+  },
+  {
+    "name": "Animal Care Trust",
+    "category": "Animal Welfare",
+    "location": "Kolkata",
+    "wishlist": [
+      {
+        "item": "Pet Beds",
+        "quantity": 50
+      },
+      {
+        "item": "Toys",
+        "quantity": 100
+      }
+    ],
+    "email": "animalcaretrust@gmail.com",
+    "password": "AnimalCareTrust123"
+  },
+  {
+    "name": "Books for All",
+    "category": "Education",
+    "location": "Mumbai",
+    "wishlist": [
+      {
+        "item": "Books",
+        "quantity": 200
+      },
+      {
+        "item": "School Bags",
+        "quantity": 50
+      }
+    ],
+    "email": "booksforall@gmail.com",
+    "password": "BooksforAll123"
+  },
+  {
+    "name": "Elder Care Foundation",
+    "category": "Elderly Care",
+    "location": "Pune",
+    "wishlist": [
+      {
+        "item": "Wheelchairs",
+        "quantity": 10
+      },
+      {
+        "item": "Medicines",
+        "quantity": 100
+      }
+    ],
+    "email": "eldercarefoundation@gmail.com",
+    "password": "ElderCareFoundation123"
+  },
+  {
+    "name": "Children\u2019s Hope",
+    "category": "Child Welfare",
+    "location": "Delhi",
+    "wishlist": [
+      {
+        "item": "Toys",
+        "quantity": 100
+      },
+      {
+        "item": "Clothes",
+        "quantity": 50
+      }
+    ],
+    "email": "childrenshope@gmail.com",
+    "password": "Children\u2019sHope123"
+  },
+  {
+    "name": "Health Aid",
+    "category": "Healthcare",
+    "location": "Chennai",
+    "wishlist": [
+      {
+        "item": "First Aid Kits",
+        "quantity": 50
+      },
+      {
+        "item": "Medicines",
+        "quantity": 100
+      }
+    ],
+    "email": "healthaid@gmail.com",
+    "password": "HealthAid123"
+  }
+]

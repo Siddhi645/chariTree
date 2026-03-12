@@ -1,0 +1,44 @@
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+export default function DonorLoginPage() {
+  const [form, setForm] = useState({ email: "", password: "" });
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+    try {
+      const res = await fetch("/api/user/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Login failed");
+      // Save token (for demo, localStorage)
+      localStorage.setItem("donorToken", data.token);
+  navigate("/donate");
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-100 to-white">
+      <form className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md" onSubmit={handleSubmit}>
+        <h2 className="text-3xl font-bold text-blue-700 mb-6 text-center">Donor Login</h2>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} className="mb-4 w-full px-4 py-2 border rounded-lg" required />
+        <input name="password" type="password" placeholder="Password" value={form.password} onChange={handleChange} className="mb-6 w-full px-4 py-2 border rounded-lg" required />
+        <button type="submit" className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">Login</button>
+        <div className="mt-4 text-center text-sm">Don't have an account? <a href="/donor-signup" className="text-blue-600 hover:underline">Sign Up</a></div>
+      </form>
+    </div>
+  );
+}
