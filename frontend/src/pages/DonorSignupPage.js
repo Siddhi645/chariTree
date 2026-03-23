@@ -20,11 +20,23 @@ export default function DonorSignupPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...form, role: "donor" }),
       });
-      const data = await res.json();
+
+      const responseText = await res.text();
+      let data = {};
+      if (responseText) {
+        try {
+          data = JSON.parse(responseText);
+        } catch {
+          throw new Error(
+            `Server returned invalid response (${res.status}). Check API URL and backend deployment.`
+          );
+        }
+      }
+
       if (!res.ok) throw new Error(data.message || "Signup failed");
       navigate("/donor-login");
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Something went wrong");
     }
   };
 

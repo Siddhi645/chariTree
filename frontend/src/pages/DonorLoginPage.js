@@ -20,13 +20,26 @@ export default function DonorLoginPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const data = await res.json();
+
+      const responseText = await res.text();
+      let data = {};
+      if (responseText) {
+        try {
+          data = JSON.parse(responseText);
+        } catch {
+          throw new Error(
+            `Server returned invalid response (${res.status}). Check API URL and backend deployment.`
+          );
+        }
+      }
+
       if (!res.ok) throw new Error(data.message || "Login failed");
+
       // Save token (for demo, localStorage)
       localStorage.setItem("donorToken", data.token);
-  navigate("/donate");
+      navigate("/donate");
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Something went wrong");
     }
   };
 
