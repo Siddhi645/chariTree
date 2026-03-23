@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { apiUrl } from "../config/api";
 
 export default function OrgAuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -18,8 +19,8 @@ export default function OrgAuthPage() {
     setError("");
     try {
       const endpoint = isLogin
-        ? "http://localhost:5000/api/auth/org/login"
-        : "http://localhost:5000/api/auth/org/signup";
+        ? apiUrl("/api/auth/org/login")
+        : apiUrl("/api/auth/org/signup");
       const res = await axios.post(endpoint, formData);
       localStorage.setItem("token", res.data.token);
       alert(`Welcome ${res.data.organization.name}!`);

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import DonorNavbar from "../components/DonorNavbar";
+import { apiUrl } from "../config/api";
 
 export default function DonatePage() {
   const [activeCard, setActiveCard] = useState("money");
@@ -51,7 +52,7 @@ export default function DonatePage() {
   // Fetch organizations
   const fetchOrganizations = useCallback(async () => {
     try {
-      const res = await axios.get("/api/organizations", {
+      const res = await axios.get(apiUrl("/api/organizations"), {
         params: { category: filterCategory, location: filterLocation, search: searchTerm },
       });
       setOrganizationData(res.data);
@@ -68,7 +69,7 @@ export default function DonatePage() {
   const handleWishlistSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("/api/donations/wishlist", {
+      await axios.post(apiUrl("/api/donations/wishlist"), {
         orgId: selectedOrg._id,
         name: wishlistForm.name,
         email: wishlistForm.email,
@@ -113,7 +114,7 @@ const handleMonetarySubmit = async (e) => {
 
     console.log("🧾 Sending monetary donation:", payload);
 
-    const res = await axios.post("/api/donations/monetary", payload);
+    const res = await axios.post(apiUrl("/api/donations/monetary"), payload);
 
     if (res.status === 200) {
       // Show temporary fake payment processing screen
@@ -187,7 +188,7 @@ const handleMonetarySubmit = async (e) => {
 
       await Promise.all(
         selectedSplitOrgs.map((org) =>
-          axios.post("/api/donations/split", {
+          axios.post(apiUrl("/api/donations/split"), {
             orgId: org._id,
             amount: amountPerOrg,
           })

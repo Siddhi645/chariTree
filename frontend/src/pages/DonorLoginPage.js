@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiUrl } from "../config/api";
 
 export default function DonorLoginPage() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -14,7 +15,7 @@ export default function DonorLoginPage() {
     e.preventDefault();
     setError("");
     try {
-      const res = await fetch("/api/user/login", {
+      const res = await fetch(apiUrl("/api/user/login"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),

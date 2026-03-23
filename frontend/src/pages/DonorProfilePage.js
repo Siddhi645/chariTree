@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { apiUrl } from "../config/api";
 
 export default function DonorProfilePage() {
   const [email, setEmail] = useState("");
@@ -9,7 +10,7 @@ export default function DonorProfilePage() {
 
   const fetchDonations = async () => {
     try {
-      const res = await axios.get(`/api/donations/by-email/${email}`);
+      const res = await axios.get(apiUrl(`/api/donations/by-email/${email}`));
       setDonations(res.data);
       setSearched(true);
     } catch (err) {

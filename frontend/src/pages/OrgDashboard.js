@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import DonationTrackingEditor from "../components/DonationTrackingEditor";
+import { apiUrl } from "../config/api";
 
 export default function OrgDashboard() {
   const [wishlist, setWishlist] = useState([]);
@@ -16,7 +17,7 @@ export default function OrgDashboard() {
   const fetchOrg = React.useCallback(async () => {
     try {
       const res = await axios.get(
-        "http://localhost:5000/api/organizations/dashboard/me",
+        apiUrl("/api/organizations/dashboard/me"),
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setOrg(res.data);
@@ -53,7 +54,7 @@ export default function OrgDashboard() {
   const handleSave = async () => {
     try {
       await axios.put(
-        "http://localhost:5000/api/organizations/wishlist",
+        apiUrl("/api/organizations/wishlist"),
         { wishlist },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -251,7 +252,7 @@ export default function OrgDashboard() {
                               try {
                                 let resolvedId = don.donationRef || null;
                                 if (!resolvedId && don.donorEmail) {
-                                  const r = await axios.get(`/api/donations/donor/${encodeURIComponent(don.donorEmail)}`);
+                                  const r = await axios.get(apiUrl(`/api/donations/donor/${encodeURIComponent(don.donorEmail)}`));
                                   const list = r.data.donations || [];
                                   const match = list.find((dd) => {
                                     try {

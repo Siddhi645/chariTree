@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { useState } from "react";
+import { apiUrl } from "../config/api";
 
 export default function VolunteerLanding() {
   const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function VolunteerLanding() {
     setSubmitting(true);
     try {
       // optimistic attempt: backend route may not exist yet
-      await axios.post('/api/volunteers/apply', {
+      await axios.post(apiUrl('/api/volunteers/apply'), {
         orgId: org?._id,
         name,
         email,

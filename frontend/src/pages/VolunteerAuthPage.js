@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { apiUrl } from "../config/api";
 
 export default function VolunteerAuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -22,8 +23,8 @@ export default function VolunteerAuthPage() {
     e.preventDefault();
     try {
       const url = isLogin
-        ? "http://localhost:5000/api/volunteers/login"
-        : "http://localhost:5000/api/volunteers/register";
+        ? apiUrl("/api/volunteers/login")
+        : apiUrl("/api/volunteers/register");
 
       const res = await axios.post(url, formData);
       localStorage.setItem("token", res.data.token);

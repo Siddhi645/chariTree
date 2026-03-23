@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import DonorNavbar from '../components/DonorNavbar';
 import axios from 'axios';
 import DonationTrackingView from '../components/DonationTrackingView';
+import { apiUrl } from '../config/api';
 
 export default function DonorProfile() {
   const [email, setEmail] = useState('');
@@ -19,7 +20,7 @@ export default function DonorProfile() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`/api/donations/donor/${encodeURIComponent(email)}`);
+      const res = await axios.get(apiUrl(`/api/donations/donor/${encodeURIComponent(email)}`));
       const list = res.data.donations || [];
       setDonations(list);
       // compute quick summaries

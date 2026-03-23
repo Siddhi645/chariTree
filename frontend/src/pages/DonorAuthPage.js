@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { apiUrl } from "../config/api";
 
 export default function DonorAuthPage() {
   const [isLogin, setIsLogin] = useState(true);
@@ -20,8 +21,8 @@ export default function DonorAuthPage() {
     e.preventDefault();
     try {
       const url = isLogin
-        ? "http://localhost:5000/api/donors/login"
-        : "http://localhost:5000/api/donors/register";
+        ? apiUrl("/api/donors/login")
+        : apiUrl("/api/donors/register");
 
       const res = await axios.post(url, formData);
       localStorage.setItem("token", res.data.token);

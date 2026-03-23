@@ -3,6 +3,7 @@ import axios from "axios";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import DonorNavbar from "../components/DonorNavbar";
+import { apiUrl } from "../config/api";
 
 export default function VolunteerDashboard() {
   const [organizations, setOrganizations] = useState([]);
@@ -14,7 +15,7 @@ export default function VolunteerDashboard() {
     const fetchOrgs = async () => {
       setLoading(true);
       try {
-        const res = await axios.get('/api/organizations');
+        const res = await axios.get(apiUrl('/api/organizations'));
         setOrganizations(res.data || []);
         setError("");
       } catch (err) {
@@ -24,7 +25,7 @@ export default function VolunteerDashboard() {
           { _id: 'org_1', name: 'Helping Hands', category: 'Child Welfare', location: 'Pune' },
           { _id: 'org_2', name: 'Health Aid', category: 'Healthcare', location: 'Chennai' },
         ]);
-        setError('Showing fallback organizations — backend /api/organizations unreachable.');
+        setError('Showing fallback organizations because backend is unreachable.');
       } finally {
         setLoading(false);
       }

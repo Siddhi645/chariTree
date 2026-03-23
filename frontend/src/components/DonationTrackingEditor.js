@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 
 export default function DonationTrackingEditor({ donationId, organizationId, organizationName, token, onClose, onSaved }) {
   const [title, setTitle] = useState('');
@@ -26,7 +27,7 @@ export default function DonationTrackingEditor({ donationId, organizationId, org
         createdBy: 'organization'
       };
 
-      const res = await axios.post(`/api/donations/${donationId}/tracking`, body, { headers: { Authorization: `Bearer ${token}` } });
+      const res = await axios.post(apiUrl(`/api/donations/${donationId}/tracking`), body, { headers: { Authorization: `Bearer ${token}` } });
       if (res.status === 201) {
         onSaved && onSaved(res.data.tracking);
       } else {

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import { apiUrl } from '../config/api';
 
 export default function DonationTrackingView({ donationId, onClose }) {
   const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ export default function DonationTrackingView({ donationId, onClose }) {
       setLoading(true);
       setError('');
       try {
-        const res = await axios.get(`/api/donations/${donationId}/tracking`);
+        const res = await axios.get(apiUrl(`/api/donations/${donationId}/tracking`));
         if (!cancelled) setEntries(res.data.tracking || []);
       } catch (err) {
         console.error('Failed to load tracking', err.message || err);
